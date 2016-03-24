@@ -34,6 +34,14 @@ class Employee_leave extends CI_Model {
            return $query->num_rows();
          }
 
+         public function check_record_overtime($id){
+           $this->db->select('*');
+           $this->db->from('employee_overtime');
+           $this->db->where('employee_id', $id);
+           $query = $this->db->get();
+           return $query->num_rows();
+         }
+
          public function update_record($data){
            $id = $data['emp_id'];
            $this->db->select('*');
@@ -41,6 +49,15 @@ class Employee_leave extends CI_Model {
            $this->db->where('emp_id', $id);
            unset($data['emp_id']);
            $this->db->update('leave_avail', $data);
+         }
+
+         public function update_record_overtime($data){
+           $id = $data['employee_id'];
+           $this->db->select('*');
+           $this->db->from('employee_overtime');
+           $this->db->where('employee_id', $id);
+           unset($data['employee_id']);
+           $this->db->update('employee_overtime', $data);
          }
 
          public function insert_record($data){
@@ -67,6 +84,10 @@ class Employee_leave extends CI_Model {
 
          public function add_shift($data){
            $this->db->insert('shifttimings', $data);
+         }
+
+         public function add_overtime($data){
+           $this->db->insert('employee_overtime', $data);
          }
 
          public function get_all_data(){

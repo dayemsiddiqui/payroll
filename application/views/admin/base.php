@@ -130,12 +130,12 @@
                   <li class="sub-menu">
                       <a href="javascript:;" class="">
                           <i class="icon_desktop"></i>
-                          <span>Employee Overtime</span>
+                          <span>Overtime</span>
                           <span class="menu-arrow arrow_carrot-right"></span>
                       </a>
                       <ul class="sub">
                           <li><a class="" href="<?php echo base_url(); ?>index.php/leave/overtime">Add Overtime</a></li>
-                          <li><a class="" href="<?php echo base_url(); ?>index.php/leave/viewovertime">Remove Overtime</a></li>
+                          <li><a class="" href="<?php echo base_url(); ?>index.php/leave/viewovertime">View Overtime</a></li>
                       </ul>
                   </li>
 

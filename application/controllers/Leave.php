@@ -105,6 +105,40 @@ class Leave extends CI_Controller {
 
 	}
 
+	public function overtime(){
+	 $this->load->database();
+	$this->load->model('Employee_profile');
+	$employees = $this->Employee_profile->get_all_names();
+	$data = array(
+		'employees' => $employees,
+	);
+	 $this->load->view('admin/base');
+	 $this->load->view('admin/overtimeedit', $data);
+
+ }
+
+
+ public function addovertime(){
+	 $this->load->database();
+	$this->load->model('Employee_leave');
+	$employees = $this->Employee_leave->check_record_overtime( $this->input->post('employee_id'));
+	$data = array(
+		'employee_id' => $this->input->post('employee_id'),
+		'overTime_hour' => $this->input->post('overTime_hour'),
+		'timeout' => $this->input->post('timeout'),
+		'remarks' => $this->input->post('remarks'),
+		'date' => $this->input->post('date')
+	);
+	if($employees > 0){
+		$employees = $this->Employee_leave->update_record_overtime($data);
+	}else{
+			 $this->Employee_leave->add_overtime($data);
+	}
+
+	 redirect('leave/viewovertime');
+
+ }
+
 	 public function addshift(){
 		 $this->load->database();
 		$this->load->model('Employee_leave');
